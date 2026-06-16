@@ -1,0 +1,71 @@
+# Cargo.toml raíz STANDALONE de dominium — front-door del simulador determinista
+# de campo medio sobre Llimphi. Solo el código de dominium; Llimphi y lo
+# fundacional por git-dep del monorepo tawasuyu.git.
+[workspace]
+resolver = "2"
+members = [
+    "01_yachay/dominium/dominium-core",
+    "01_yachay/dominium/dominium-physics",
+    "01_yachay/dominium/dominium-sim",
+    "01_yachay/dominium/dominium-iso",
+    "01_yachay/dominium/dominium-render-plan",
+    "01_yachay/dominium/dominium-canvas-llimphi",
+    "01_yachay/dominium/dominium-app-llimphi",
+    "01_yachay/dominium/dominium-cli",
+    "01_yachay/dominium/dominium-notebook-kernel",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.80"
+license = "MIT"
+authors = ["Sergio <gerencia@jlsoltech.com>"]
+publish = false
+repository = "https://github.com/tawasuyu/dominium"
+
+[workspace.dependencies]
+
+# ============================================================
+# Externas de crates.io (versión local, no compartidas por git-dep)
+# ============================================================
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+libm = "0.2"
+clap = { version = "4", features = ["derive"] }
+anyhow = "1"
+async-trait = "0.1"
+directories = "5"
+pollster = "0.4"
+png = "0.18"
+tokio = { version = "1", features = ["full"] }
+
+# ============================================================
+# git-deps al monorepo tawasuyu (fuente única de verdad)
+# ============================================================
+
+# Registro de apps / menú global
+app-bus = { git = "https://git.tawasuyu.net/tawasuyu/tawasuyu.git", branch = "main" }
+
+# i18n + bus de config del SO
+rimay-localize = { git = "https://git.tawasuyu.net/tawasuyu/tawasuyu.git", branch = "main" }
+wawa-config = { git = "https://git.tawasuyu.net/tawasuyu/tawasuyu.git", branch = "main" }
+wawa-config-llimphi = { git = "https://git.tawasuyu.net/tawasuyu/tawasuyu.git", branch = "main" }
+
+# Notebook de pluma — kernel de simulación como celdas
+pluma-notebook-core = { git = "https://git.tawasuyu.net/tawasuyu/tawasuyu.git", branch = "main" }
+pluma-notebook-exec = { git = "https://git.tawasuyu.net/tawasuyu/tawasuyu.git", branch = "main" }
+
+# ============================================================
+# Llimphi (motor gráfico soberano) — bucle Elm, theme, widgets
+# ============================================================
+llimphi-ui = { git = "https://git.tawasuyu.net/tawasuyu/tawasuyu.git", branch = "main" }
+llimphi-theme = { git = "https://git.tawasuyu.net/tawasuyu/tawasuyu.git", branch = "main" }
+llimphi-motion = { git = "https://git.tawasuyu.net/tawasuyu/tawasuyu.git", branch = "main" }
+llimphi-clipboard = { git = "https://git.tawasuyu.net/tawasuyu/tawasuyu.git", branch = "main" }
+llimphi-widget-button = { git = "https://git.tawasuyu.net/tawasuyu/tawasuyu.git", branch = "main" }
+llimphi-widget-slider = { git = "https://git.tawasuyu.net/tawasuyu/tawasuyu.git", branch = "main" }
+llimphi-widget-text-input = { git = "https://git.tawasuyu.net/tawasuyu/tawasuyu.git", branch = "main" }
+llimphi-widget-menubar = { git = "https://git.tawasuyu.net/tawasuyu/tawasuyu.git", branch = "main" }
+llimphi-widget-edit-menu = { git = "https://git.tawasuyu.net/tawasuyu/tawasuyu.git", branch = "main" }
+llimphi-widget-context-menu = { git = "https://git.tawasuyu.net/tawasuyu/tawasuyu.git", branch = "main" }
